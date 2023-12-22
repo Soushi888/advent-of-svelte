@@ -1,7 +1,37 @@
+<script lang="ts">
+	let count = 0;
+	let counterInput: HTMLInputElement;
+	let santaClaus: HTMLImageElement;
+
+	function updateSantaClaus(number: number) {
+		santaClaus.style.height = `${number}px`;
+		santaClaus.style.width = `${number}px`;
+	}
+
+	function addCookies() {
+		count += +counterInput.value;
+		if (count >= 500) count = 500;
+		counterInput.value = '';
+		updateSantaClaus(count);
+	}
+
+	function removeCookies() {
+		count -= +counterInput.value;
+		if (count < 0) count = 0;
+		counterInput.value = '';
+		updateSantaClaus(count);
+	}
+
+	function resetCookies() {
+		count = 0;
+		counterInput.value = '';
+		updateSantaClaus(count);
+	}
+</script>
+
 <svelte:head>
 	<title>Day 2 - Merry Munch-o-Meter</title>
 </svelte:head>
-
 
 <section class="px-[10%] flex justify-center flex-col">
 	<div>
@@ -24,4 +54,44 @@
 		</p>
 	</div>
 	<hr class="mb-4" />
+
+	<div class="flex justify-center gap-10 items-center flex-col">
+		<div class="p-6 border-2 w-fit rounded-xl flex flex-col gap-4">
+			<p class="text-center">Cookies eated : <span>{count}</span></p>
+			<input
+				class="text-black px-2 w-20 self-center"
+				type="number"
+				name="cookies-number"
+				id="cookies-number"
+				min="0"
+				max="500"
+				bind:this={counterInput}
+			/>
+			<div class="flex gap-6">
+				<button
+					class="p-2 border-2 hover:bg-white hover:text-black transition"
+					on:click={addCookies}>Add</button
+				>
+				<button
+					class="p-2 border-2 hover:bg-white hover:text-black transition"
+					on:click={removeCookies}>Remove</button
+				>
+				<button
+					class="p-2 border-2 hover:bg-white hover:text-black transition"
+					on:click={resetCookies}>Reset</button
+				>
+			</div>
+		</div>
+
+		<div class="flex justify-center">
+			<img
+				class="transition-all h-0 w-0"
+				src="Santa.png"
+				alt="Santa Claus"
+				bind:this={santaClaus}
+			/>
+			{#if count === 500}
+				<p class="text-center absolute text-xl">I'm full !</p>{/if}
+		</div>
+	</div>
 </section>
