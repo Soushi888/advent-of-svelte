@@ -52,7 +52,7 @@
 		<div class="border-r-2" />
 
 		<div class="p-4">
-			<h3 class="text-2xl font-bold">Nice kids</h3>
+			<h3 class="text-2xl font-bold mb-4">Nice kids</h3>
 			<ul class="flex flex-col gap-2">
 				{#each niceKids as niceKid}
 					<li class="flex justify-between border-b-2">
