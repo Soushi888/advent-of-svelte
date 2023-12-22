@@ -1,3 +1,14 @@
+<script lang="ts">
+	export let data;
+
+	let niceKids = data.kids.filter((k) => k.tally >= 0);
+	let naughtyKids = data.kids.filter((k) => k.tally < 0);
+</script>
+
+<svelte:head>
+	<title>Day 1 - Naughty or Nice</title>
+</svelte:head>
+
 <section class="px-[10%] flex justify-center flex-col">
 	<div>
 		<h2 class="text-2xl my-4 text-center">Day 1 - Naughty or Nice</h2>
@@ -25,4 +36,30 @@
 	</div>
 
 	<hr class="mb-4" />
+
+	<div class="flex justify-center gap-10">
+		<div class="p-4">
+			<h3 class="text-2xl font-bold mb-4">Naughty Kids</h3>
+			<ul class="flex flex-col gap-2">
+				{#each naughtyKids as naughtyKid}
+					<li class="flex justify-between border-b-2">
+						<p>{naughtyKid.name}</p>
+						<p class="text-red-600">{naughtyKid.tally}</p>
+					</li>{/each}
+			</ul>
+		</div>
+
+		<div class="border-r-2" />
+
+		<div class="p-4">
+			<h3 class="text-2xl font-bold">Nice kids</h3>
+			<ul class="flex flex-col gap-2">
+				{#each niceKids as niceKid}
+					<li class="flex justify-between border-b-2">
+						<p>{niceKid.name}</p>
+						<p class="text-green-600">{niceKid.tally}</p>
+					</li>{/each}
+			</ul>
+		</div>
+	</div>
 </section>

@@ -1,3 +1,8 @@
+<svelte:head>
+	<title>Day 2 - Merry Munch-o-Meter</title>
+</svelte:head>
+
+
 <section class="px-[10%] flex justify-center flex-col">
 	<div>
 		<h2 class="text-2xl my-4 text-center">Day 2 - Merry Munch-o-Meter</h2>
